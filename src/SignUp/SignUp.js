@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 
 class SignUp extends Component {
@@ -129,7 +129,8 @@ class SignUp extends Component {
                 </form>
                 <div>
                 
-                <button type='submit' onClick = {this.onClick}>SignUp</button>
+                <Link to ="/"><button type='submit' onClick = {this.onClick}>SignUp</button></Link>
+                <Link to ="/">Login</Link>
 
                 </div>
             </div>

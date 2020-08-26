@@ -1,14 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Login from './Login/Login'
 import SignUp from './SignUp/SignUp'
-import Apps from './UserTable/UserTable'
+
 
 function App() {
   return (
     <div className="App">
-      <Apps/>
+      <Router>
+      <Route path ="/" exact component = {Login}/>
+      <Route path ="/signUp" exact component = {SignUp}/>
+      </Router>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
+import UserTable from "../UserTable/UserTable"
 
 class Login extends Component {
     constructor(props) {
@@ -8,9 +9,19 @@ class Login extends Component {
         this.state = {
             email:"",
             password:"", 
-            LoginFormData: {}
+            LoginFormData: {},
+            loginSuccess:[]
          };
     }
+
+    componentDidMount(){
+        const userInfo= JSON.parse(localStorage
+            .getItem("USER_INFO")) || [];
+        this.setState({
+            loginSuccess:userInfo
+        })
+    }
+
     handleChange = (data) => {
 
         let name = data.target.name
@@ -30,14 +41,22 @@ class Login extends Component {
     onClick = () =>{
         axios.post('http://localhost:8000/api/manager/login/', this.state.LoginFormData).then(
             res =>{
-                console.log(res)
+                localStorage.setItem("USER_INFO", JSON.stringify(res.data.data));
+                this.setState({
+                    loginSuccess:res.data.data
+                })
+                
             }
         )
     }
 
     render() {
-        const {email, password}= this.state
+        const {email, password, loginSuccess}= this.state
+        
         return (
+            <>
+            {loginSuccess.length === 0
+            ?(
             <div>
                 <form action="" className="form_up_box" style={{ marginTop: '30px' }}>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
@@ -65,11 +84,14 @@ class Login extends Component {
                     </div>
                 </form>
                 <div>
-                
                 <button type='submit' onClick = {this.onClick}>Login</button>
-
+                <Link to ="/signup">Sign up</Link>
                 </div>
             </div>
+            )
+            :<UserTable/>
+            }
+            </>
         )
     }
 }

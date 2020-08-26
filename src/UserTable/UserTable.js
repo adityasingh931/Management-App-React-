@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import BoostrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import * as ReactBootSrap from 'react-bootstrap';
+// import * as ReactBootSrap from 'react-bootstrap';
 import axios from "axios";
+import {Link} from 'react-router-dom';
 import NewModal from '../Model/newModel';
 
 class UserTable extends Component {
@@ -130,6 +131,10 @@ class UserTable extends Component {
     })
   }
 
+  logout=()=>{
+    localStorage.removeItem("USER_INFO");
+  }
+
   render() {
 
     const {email, password, first_name, last_name, dob, company, address, mobile, employeeId}= this.state
@@ -162,9 +167,13 @@ class UserTable extends Component {
     
     return (
       <div>
+        
         <input name="employeeId" type="number" value={employeeId} onChange={this.handeleIdChange}/>
         <input type="submit" value="delete User" onClick={this.deleteUser}/>
         <input type="submit" value="Update User" onClick={this.updateUserModel}/>
+        <Link to ="/signUp">
+        <input type="submit" value="Logout" onClick={this.logout}/>
+        </Link>
         <input type="submit" value="Add User" onClick={this.addUser}/>
         <NewModal
           show={this.state.showModel}
