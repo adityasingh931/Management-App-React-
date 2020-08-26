@@ -10,6 +10,7 @@ class UserTable extends Component {
     super(props);
     this.state = {
       data: {},
+      employeeId:"",
       showModel: false,
       email:"",
       password:"", 
@@ -19,6 +20,7 @@ class UserTable extends Component {
       dob:"",
       company:"",
       mobile:"",
+      updateUser:false,
       userFormData: {}
     };
   }
@@ -59,11 +61,23 @@ class UserTable extends Component {
 
   hideModel=()=>{
     this.setState({
-      showModel:false
+      showModel:false,
+      updateUser:false
+    })
+  }
+
+  handeleIdChange=(data)=>{
+    let name = data.target.name
+    let value = data.target.value
+    this.setState((state) => {
+      return {
+        [name]: value
+      }
     })
   }
   
   saveModel=()=>{
+    if(!this.state.updateUser) {
     axios.post('http://localhost:8000/api/employee/', this.state.userFormData).then(res1 =>{
       axios.get('http://localhost:8000/api/employee/').then(
       res2 => {
@@ -73,11 +87,53 @@ class UserTable extends Component {
       })
     })
     })
+  }else {
+    axios.patch(`http://localhost:8000/api/employee/${this.state.employeeId}/`, this.state.userFormData).then(res1 =>{
+      axios.get('http://localhost:8000/api/employee/').then(
+      res2 => {
+      this.setState({
+        data:res2.data.data,
+        showModel:false,
+        updateUser:false
+      })
+    })
+    })
+  }
+  }
+
+  deleteUser=()=>{
+    axios.delete(`http://localhost:8000/api/employee/${this.state.employeeId}/`).then(res1 =>{
+      axios.get('http://localhost:8000/api/employee/').then(
+      res2 => {
+      this.setState({
+        data:res2.data.data
+      })
+    })
+    })
+  }
+
+  deleteUser=()=>{
+    axios.patch(`http://localhost:8000/api/employee/${this.state.employeeId}/`).then(res1 =>{
+      axios.get('http://localhost:8000/api/employee/').then(
+      res2 => {
+      this.setState({
+        data:res2.data.data
+      })
+    })
+    })
+  }
+
+  updateUserModel=()=>{
+    this.setState({
+      showModel:true,
+      updateUser:true
+    })
   }
 
   render() {
-    const {email, password, first_name, last_name, dob, company, address, mobile}= this.state
-    
+
+    const {email, password, first_name, last_name, dob, company, address, mobile, employeeId}= this.state
+
     const columns = [{
       dataField: 'employee_id',
       text: 'Id'
@@ -106,6 +162,9 @@ class UserTable extends Component {
     
     return (
       <div>
+        <input name="employeeId" type="number" value={employeeId} onChange={this.handeleIdChange}/>
+        <input type="submit" value="delete User" onClick={this.deleteUser}/>
+        <input type="submit" value="Update User" onClick={this.updateUserModel}/>
         <input type="submit" value="Add User" onClick={this.addUser}/>
         <NewModal
           show={this.state.showModel}

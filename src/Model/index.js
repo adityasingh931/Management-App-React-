@@ -32,9 +32,9 @@ export default ({ show, handleChange, email, password, first_name, last_name,
               <div className="floating-label col-md-6" style={{ display: 'block' }} >
                 <input
                   name='mobile'
-                  type='text'
+                  type='number'
                   min='1'
-                  maxLength='250'
+                  maxLength='10'
                   value={mobile}
                   onChange={handleChange}
                   className='floating-input'
