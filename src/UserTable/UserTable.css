@@ -1,0 +1,8 @@
+.Add-User-btn{
+    margin:10px;
+    float: right;
+}
+.User-Id, .Delete-User-btn, .Update-User-btn, .Logout-User-btn{
+    margin:10px;
+    float: left;
+}

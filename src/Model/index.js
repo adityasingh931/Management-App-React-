@@ -4,7 +4,7 @@ import "./Style.css";
 import Form from "../Form/Form"
 
 export default ({ show, handleChange, email, password, first_name, last_name,
-  address, dob, company, mobile, primaryBtn, secondaryBtn }) => {
+  address, dob, company, mobile, failMessage, primaryBtn, secondaryBtn }) => {
 
   return (
     <Modal
@@ -18,6 +18,7 @@ export default ({ show, handleChange, email, password, first_name, last_name,
       <div className="warning-body">
         <Modal.Body>
           <div>
+            <div style={{ color: 'red' }} >{failMessage}</div>
             <Form
               email={email}
               password={password}

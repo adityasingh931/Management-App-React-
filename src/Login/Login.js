@@ -10,7 +10,8 @@ class Login extends Component {
             email: "",
             password: "",
             LoginFormData: {},
-            loginSuccess: []
+            loginSuccess: [],
+            loginFail:""
         };
     }
 
@@ -45,13 +46,19 @@ class Login extends Component {
                 this.setState({
                     loginSuccess: res.data.data
                 })
-
             }
-        )
+        ).catch(err => {
+            this.setState({
+                loginFail:err.response.data.message
+            })
+            
+          })
+
+       
     }
 
     render() {
-        const { email, password, loginSuccess } = this.state
+        const { email, password, loginSuccess,loginFail } = this.state
 
         return (
             <>
@@ -68,6 +75,7 @@ class Login extends Component {
                                 <div className="warning-body">
                                     <Modal.Body>
                                         <div>
+                                            <div style={{ color: 'red' }}>{loginFail}</div>
                                             <form action="" className="form_up_box" style={{ marginTop: '30px' }}>
                                                 <div className=" col-md-6" style={{ display: 'block' }} >
                                                     <label>Email</label>

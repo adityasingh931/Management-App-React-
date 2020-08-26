@@ -5,6 +5,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import axios from "axios";
 import {Link} from 'react-router-dom';
 import NewModal from '../Model/newModel';
+import "./UserTable.css"
 
 class UserTable extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class UserTable extends Component {
       company:"",
       mobile:"",
       updateUser:false,
-      userFormData: {}
+      userFormData: {},
+      failMessage:""
     };
   }
   componentDidMount() {
@@ -63,7 +65,8 @@ class UserTable extends Component {
   hideModel=()=>{
     this.setState({
       showModel:false,
-      updateUser:false
+      updateUser:false,
+      failMessage:""
     })
   }
 
@@ -84,9 +87,16 @@ class UserTable extends Component {
       res2 => {
       this.setState({
         data:res2.data.data,
-        showModel:false
+        showModel:false,
+        updateUser:false,
+        failMessage:""
       })
     })
+    }).catch(err => {
+      this.setState({
+        failMessage:err.response.data.message
+      })
+      
     })
   }else {
     axios.patch(`http://localhost:8000/api/employee/${this.state.employeeId}/`, this.state.userFormData).then(res1 =>{
@@ -95,26 +105,21 @@ class UserTable extends Component {
       this.setState({
         data:res2.data.data,
         showModel:false,
-        updateUser:false
+        updateUser:false,
+        failMessage:""
       })
     })
+    }).catch(err => {
+      this.setState({
+          failMessage:err.response.data.message
+      })
+      
     })
   }
   }
 
   deleteUser=()=>{
     axios.delete(`http://localhost:8000/api/employee/${this.state.employeeId}/`).then(res1 =>{
-      axios.get('http://localhost:8000/api/employee/').then(
-      res2 => {
-      this.setState({
-        data:res2.data.data
-      })
-    })
-    })
-  }
-
-  deleteUser=()=>{
-    axios.patch(`http://localhost:8000/api/employee/${this.state.employeeId}/`).then(res1 =>{
       axios.get('http://localhost:8000/api/employee/').then(
       res2 => {
       this.setState({
@@ -137,7 +142,7 @@ class UserTable extends Component {
 
   render() {
 
-    const {email, password, first_name, last_name, dob, company, address, mobile, employeeId}= this.state
+    const {email, password, first_name, last_name, dob, company, address, mobile, employeeId, failMessage}= this.state
 
     const columns = [{
       dataField: 'employee_id',
@@ -168,13 +173,13 @@ class UserTable extends Component {
     return (
       <div>
         
-        <input name="employeeId" type="number" value={employeeId} onChange={this.handeleIdChange}/>
-        <input type="submit" value="delete User" onClick={this.deleteUser}/>
-        <input type="submit" value="Update User" onClick={this.updateUserModel}/>
+        <input name="employeeId" type="number" value={employeeId} onChange={this.handeleIdChange} placeholder="Employee Id" className="User-Id"/>
+        <input type="submit" value="delete User" onClick={this.deleteUser} className="Delete-User-btn"/>
+        <input type="submit" value="Update User" onClick={this.updateUserModel} className="Update-User-btn"/>
         <Link to ="/signUp">
-        <input type="submit" value="Logout" onClick={this.logout}/>
+        <input type="submit" value="Logout" onClick={this.logout} className="Logout-User-btn"/>
         </Link>
-        <input type="submit" value="Add User" onClick={this.addUser}/>
+        <input type="submit" value="Add User" onClick={this.addUser} className="Add-User-btn"/>
         <NewModal
           show={this.state.showModel}
           hideModel={this.hideModel}
@@ -188,6 +193,7 @@ class UserTable extends Component {
           company={company}
           address={address}
           mobile={mobile}
+          failMessage={failMessage}
         />
         <BoostrapTable
           keyField="name"

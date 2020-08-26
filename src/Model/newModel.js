@@ -14,6 +14,7 @@ const NewModal = (props) => {
             address={props.address} 
             mpbile={props.mobile}
             show={props.show}
+            failMessage={props.failMessage}
             handleChange={props.handleChange}
             primaryBtn={{
                 text:"Save",
