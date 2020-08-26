@@ -67,7 +67,15 @@ class UserTable extends Component {
       showModel:false,
       updateUser:false,
       failMessage:"",
-      userFormData: {}
+      userFormData: {},
+      email:"",
+      password:"", 
+      first_name:"",
+      last_name:"",
+      address:"",
+      dob:"",
+      company:"",
+      mobile:"",
     })
   }
 
@@ -91,7 +99,15 @@ class UserTable extends Component {
         showModel:false,
         updateUser:false,
         failMessage:"",
-        userFormData: {}
+        userFormData: {},
+        email:"",
+        password:"", 
+        first_name:"",
+        last_name:"",
+        address:"",
+        dob:"",
+        company:"",
+        mobile:""
       })
     })
     }).catch(err => {
@@ -109,7 +125,15 @@ class UserTable extends Component {
         showModel:false,
         updateUser:false,
         failMessage:"",
-        userFormData: {}
+        userFormData: {},
+        email:"",
+        password:"", 
+        first_name:"",
+        last_name:"",
+        address:"",
+        dob:"",
+        company:"",
+        mobile:"",
       })
     })
     }).catch(err => {
