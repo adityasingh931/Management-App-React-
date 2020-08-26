@@ -75,7 +75,7 @@ class UserTable extends Component {
       address:"",
       dob:"",
       company:"",
-      mobile:"",
+      mobile:""
     })
   }
 
@@ -133,7 +133,7 @@ class UserTable extends Component {
         address:"",
         dob:"",
         company:"",
-        mobile:"",
+        mobile:""
       })
     })
     }).catch(err => {
