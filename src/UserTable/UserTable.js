@@ -66,7 +66,8 @@ class UserTable extends Component {
     this.setState({
       showModel:false,
       updateUser:false,
-      failMessage:""
+      failMessage:"",
+      userFormData: {}
     })
   }
 
@@ -89,7 +90,8 @@ class UserTable extends Component {
         data:res2.data.data,
         showModel:false,
         updateUser:false,
-        failMessage:""
+        failMessage:"",
+        userFormData: {}
       })
     })
     }).catch(err => {
@@ -106,7 +108,8 @@ class UserTable extends Component {
         data:res2.data.data,
         showModel:false,
         updateUser:false,
-        failMessage:""
+        failMessage:"",
+        userFormData: {}
       })
     })
     }).catch(err => {
