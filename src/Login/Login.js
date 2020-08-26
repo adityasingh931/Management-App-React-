@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from "axios";
 import UserTable from "../UserTable/UserTable"
-
+import "./Login.css"
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -57,9 +57,10 @@ class Login extends Component {
             <>
             {loginSuccess.length === 0
             ?(
-            <div>
+            <div className="Main-form-container">
                 <form action="" className="form_up_box" style={{ marginTop: '30px' }}>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                        <label>Email</label>
                         <input
                             name='email'
                             type='text'
@@ -68,9 +69,9 @@ class Login extends Component {
                             onChange={this.handleChange}
                             className='floating-input'
                         />
-                        <label>Email</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>Password</label>
                         <input
                             name='password'
                             type='password'
@@ -80,7 +81,7 @@ class Login extends Component {
                             onChange={this.handleChange}
                             className='floating-input'
                         />
-                        <label>Password</label>
+                        
                     </div>
                 </form>
                 <div>

@@ -30,6 +30,7 @@ export default ({ show, handleChange, email, password, first_name, last_name,
             />
             <form>
               <div className="floating-label col-md-6" style={{ display: 'block' }} >
+              <label>Mobile</label>
                 <input
                   name='mobile'
                   type='number'
@@ -39,7 +40,6 @@ export default ({ show, handleChange, email, password, first_name, last_name,
                   onChange={handleChange}
                   className='floating-input'
                 />
-                <label>Mobile</label>
               </div>
             </form>
           </div>

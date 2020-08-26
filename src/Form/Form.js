@@ -6,6 +6,7 @@ const Form =({handleChange,email, password,first_name, last_name,
     return(<>
         <form action="" className="form_up_box" style={{ marginTop: '30px' }}>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>First name</label>
                         <input
                             name='first_name'
                             type='text'
@@ -15,9 +16,9 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>First name</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>Last name</label>
                         <input
                             name='last_name'
                             type='text'
@@ -27,9 +28,9 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>Last name</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>Email</label>
                         <input
                             name='email'
                             type='email'
@@ -39,9 +40,9 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>Email</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>Password</label>
                         <input
                             name='password'
                             type='password'
@@ -51,9 +52,9 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>Password</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>address</label>
                         <input
                             name='address'
                             type='text'
@@ -63,9 +64,9 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>address</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>Date of Birth</label>
                         <input
                             name='dob'
                             type='date'
@@ -75,9 +76,9 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>Date of Birth</label>
                     </div>
                     <div className="floating-label col-md-6" style={{ display: 'block' }} >
+                    <label>Company</label>
                         <input
                             name='company'
                             type='text'
@@ -87,7 +88,6 @@ const Form =({handleChange,email, password,first_name, last_name,
                             onChange={handleChange}
                             className='floating-input'
                         />
-                        <label>Company</label>
                     </div>
                 </form>
         </>)
